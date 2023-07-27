@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="container">
+    <br>
+    <h2>Search Result:-</h2>
+
+    {% comment %} if search not found then... {% endcomment %}
+    {% if data|length < 1 %}
+    <p>No search results:</p>
+    Your search query: <b>{{query}}</b> did not match any documents.<br>
+    Suggestions: <br>
+    <li> Try different keywords. </li>
+    {% endif %}
+
+    <br>
+  <ol class="list-group list-group-numbered">
+    {% for i in data %}
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">{{ i.name }}</div>
+        {{ i.location }}
+      </div>
+      <form action="/items" method="get">
+        <a href="/items?items={{i}}" name="items" class="btn btn-primary">Items</a>
+      </form>
+      <!-- <span class="badge bg-primary rounded-pill">14</span> -->
+    </li>
+    {% endfor %}
+  </ol>
+</div>
+
+{% endblock body %}

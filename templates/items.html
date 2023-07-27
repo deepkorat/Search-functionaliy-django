@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block body %}
+
+
+<div class="container" >
+    {% for i in data %}
+    <br>
+    <div class="d-flex justify-content-between">
+        <div class="one">
+            <h2>{{i.name}}</h2>
+            <h6>{{i.location}}</h6>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row" class="p-3 m-5">
+        {% for key, value in i.get_items_dict.items %}
+        <!-- <li>{{ key }}: {{ value }}</li> -->
+        <div class="col-4">
+            <li>
+                {{ key }}: <span class="text-decoration-underline">{{ value }}</span>
+            </li>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}
